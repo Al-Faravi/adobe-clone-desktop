@@ -1,0 +1,41 @@
+{
+  "name": "alfaravi-pdf-pro-studio",
+  "version": "1.0.0",
+  "description": "Al-Faravi Offline PDF Pro Editor & Compressor",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:ui": "cd frontend && npm run build",
+    "build:exe": "npm run build:ui && electron-builder --win"
+  },
+  "build": {
+    "appId": "com.alfaravi.pdfprostudio",
+    "productName": "Al-Faravi PDF Pro Studio",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron-main.js",
+      "frontend/dist/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "backend-engine/dist/acrobat-engine.exe",
+        "to": "acrobat-engine.exe"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "frontend/public/alfaravi logo.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^25.1.8"
+  }
+}
